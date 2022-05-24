@@ -1,0 +1,15 @@
+SELECT * FROM students,students2;
+
+-- Dublicate Not Allowed
+SELECT students.name,students.gpa
+FROM students
+UNION 
+SELECT students2.name,students2.gpa FROM students2;
+
+-- To Select Dublicate Data
+SELECT * FROM students
+UNION ALL
+SELECT * FROM students2;
+
+INSERT INTO students2(id,name,gpa) VALUES (4,'Athi',6.2);
+

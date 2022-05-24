@@ -1,0 +1,45 @@
+-- Create Table
+CREATE TABLE students(
+id INT PRIMARY KEY,
+name VARCHAR(30),
+gpa DECIMAL(3,2)
+);
+
+-- Insert values
+INSERT INTO students(id,name,gpa) VALUES(3,'Raja',8.6);
+INSERT INTO students VALUES(4,'Athi',6.2);
+
+-- Update Table
+UPDATE students
+SET id=2,name='Athithan',gpa=9.8
+WHERE id=3;
+
+-- Select values to see
+SELECT * FROM students;
+SELECT name,gpa
+FROM students;
+--Dif Types to fetch data
+SELECT * FROM students
+ORDER BY name ASC;
+
+SELECT * FROM students
+ORDER BY name DESC;
+
+SELECT COUNT(id),name
+FROM students
+GROUP BY name;
+
+SELECT COUNT(id),name
+FROM students
+GROUP BY name
+HAVING COUNT(id)>=2;
+
+SELECT DISTINCT name
+FROM students;
+
+--Delete Exiting Data
+DELETE FROM students
+WHERE id=2;
+
+-- Delete Table
+DROP TABLE students;

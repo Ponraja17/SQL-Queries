@@ -1,0 +1,32 @@
+-- Limiting
+SELECT * FROM students
+LIMIT 3;
+
+-- OFFSET
+SELECT * FROM students
+LIMIT 3 OFFSET 1;
+
+-- Sort by length of string ORDER BY
+SELECT name,LENGTH(name) len
+FROM students
+ORDER BY len DESC;
+       
+-- Skipping
+SELECT * FROM students
+OFFSET 2
+FETCH NEXT 2 ROWS ONLY;
+
+-- Case Statements
+SELECT name,gpa,
+CASE 
+WHEN gpa>8.1 AND gpa<=10 THEN 'Topper'
+WHEN gpa>6 AND gpa<=8 THEN 'Back Bencher'
+END rank
+FROM students
+ORDER BY gpa DESC;
+
+-- CASE with Aggregate Function
+SELECT SUM(CASE WHEN gpa>=9 THEN 1 ELSE 0 END)AS "Top",
+       SUM(CASE WHEN gpa>=8 THEN 1 ELSE 0 END)AS "Middle",
+       SUM(CASE WHEN gpa<8 THEN 1 ELSE 0 END) AS "Low"
+FROM students;

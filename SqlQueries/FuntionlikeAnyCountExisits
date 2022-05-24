@@ -1,0 +1,35 @@
+SELECT * FROM employee;
+SELECT * FROM branch;
+
+-- Count Funtion
+SELECT COUNT(emp_name) FROM employee
+WHERE branch_id=(SELECT br_id FROM branch
+            WHERE br_name='Madurai');
+-- ALL Funtion
+SELECT * FROM employee
+WHERE branch_id<>ALL(
+SELECT br_id FROM branch
+WHERE br_name IN ('Chennai','Coimbatore'));
+
+--Min & MAx Function
+SELECT * FROM employee
+WHERE salary=(SELECT MIN(salary) FROM employee);
+SELECT * FROM employee
+WHERE salary=(SELECT MAX(salary) FROM employee);
+
+-- AVG Function
+SELECT AVG(salary) MaduraiAvg FROM employee;
+
+-- SUM Function
+SELECT SUM(salary) ChennaiTotalSalary FROM employee;
+
+-- Exisits Keyword
+SELECT br_id,br_name
+FROM branch
+WHERE EXISTS(SELECT * FROM employee
+            WHERE job_dec='Developer' AND br_id=emp_id);
+            
+-- ANY Function           
+SELECT * FROM branch
+WHERE br_id=ANY(SELECT branch_id FROM employee
+WHERE salary>25000);
